@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { api } from '../services/api';
@@ -23,6 +24,22 @@ export default function StatsPage() {
     } finally {
       setLoading(false);
     }
+  };
+
+  // Format date to local timezone with better readability
+  const formatDate = (dateString) => {
+    if (!dateString) return 'Never';
+    
+    const date = new Date(dateString);
+    
+    return date.toLocaleString('en-IN', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true
+    });
   };
 
   if (loading) return <div className="p-8">Loading...</div>;
@@ -56,12 +73,12 @@ export default function StatsPage() {
             
             <div>
               <label className="font-semibold">Last Clicked:</label>
-              <p>{link.last_clicked ? new Date(link.last_clicked).toLocaleString() : 'Never'}</p>
+              <p>{formatDate(link.last_clicked)}</p>
             </div>
             
             <div>
               <label className="font-semibold">Created:</label>
-              <p>{new Date(link.created_at).toLocaleString()}</p>
+              <p>{formatDate(link.created_at)}</p>
             </div>
           </div>
         </div>
