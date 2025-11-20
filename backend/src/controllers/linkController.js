@@ -46,7 +46,7 @@ exports.createLink = async (req, res) => {
       [shortCode, target_url]
     );
 
-    res.status(201).json(result.rows[0]);
+    res.status(200).json(result.rows[0]);
   } catch (error) {
     console.error('Create link error:', error);
     res.status(500).json({ error: 'Server error' });

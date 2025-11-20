@@ -39,8 +39,9 @@ export default function Dashboard() {
   };
 
   const filteredLinks = links.filter(link =>
-    link.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    link.target_url.toLowerCase().includes(searchTerm.toLowerCase())
+     link.code.toLowerCase().includes(searchTerm.toLowerCase()) 
+    // ||
+    // link.target_url.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -53,7 +54,7 @@ export default function Dashboard() {
         <div className="mt-8">
           <input
             type="text"
-            placeholder="Search by code or URL..."
+            placeholder="Search by code"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full px-4 py-2 border rounded-lg mb-4"

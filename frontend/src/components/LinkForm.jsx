@@ -57,7 +57,7 @@ export default function LinkForm({ onSuccess }) {
         
         <div>
           <label className="block text-sm font-medium mb-1">
-            Custom Code (optional, 6-8 characters)
+            Custom Code (optional 6-8 characters)
           </label>
           <input
             type="text"
