@@ -10,7 +10,7 @@ router.delete('/api/links/:code', linkController.deleteLink);
 
 // Health check
 router.get('/healthz', (req, res) => {
-  res.json({ ok: true, version: '1.0' });
+  res.json({ ok: true, version: '1.0', "uptime": process.uptime(), "timestamp": new Date().toISOString() });
 });
 
 // Redirect route (must be last)

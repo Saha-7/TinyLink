@@ -34,7 +34,7 @@ export default function Dashboard() {
       await api.deleteLink(code);
       fetchLinks();
     } catch (err) {
-      alert('Failed to delete link');
+      alert('Failed to delete link', console.log(err));
     }
   };
 
