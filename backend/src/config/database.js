@@ -5,6 +5,11 @@ const pool = new Pool({
   ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
 });
 
+// Set timezone to IST for all queries
+pool.on('connect', (client) => {
+  client.query("SET timezone = 'Asia/Kolkata'");
+});
+
 // Create table if not exists
 const initDB = async () => {
   const query = `
@@ -13,8 +18,8 @@ const initDB = async () => {
       code VARCHAR(8) UNIQUE NOT NULL,
       target_url TEXT NOT NULL,
       clicks INTEGER DEFAULT 0,
-      last_clicked TIMESTAMP,
-      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      last_clicked TIMESTAMPTZ,
+      created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
     );
     
     CREATE INDEX IF NOT EXISTS idx_code ON links(code);
